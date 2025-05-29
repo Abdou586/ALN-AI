@@ -29,6 +29,11 @@ st.set_page_config(
     layout="wide"
 )
 
+# Configuration des API
+STABILITY_API_KEY = os.getenv("STABILITY_API_KEY")
+STABILITY_API_HOST = os.getenv("STABILITY_API_HOST", 'https://api.stability.ai')
+ENGINE_ID = os.getenv("ENGINE_ID", 'stable-diffusion-xl-1024-v1-0')
+
 # Style CSS personnalisé
 st.markdown("""
     <style>
@@ -101,15 +106,6 @@ if "memory" not in st.session_state:
     st.session_state.memory = ConversationBufferMemory(return_messages=True)
 if "first_message" not in st.session_state:
     st.session_state.first_message = True
-
-# Configuration de l'email
-EMAIL_ADDRESS = "niabalyabdoulatif@gmail.com"
-EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")  # À configurer dans le fichier .env
-
-# Configuration de l'API Stability AI
-STABILITY_API_KEY = "sk-NT8hR1hdFOl42oHg43PSA2diEF05Yr5LduWIhZyOScG1C7p8"
-STABILITY_API_HOST = 'https://api.stability.ai'
-ENGINE_ID = 'stable-diffusion-xl-1024-v1-0'
 
 # Dictionnaire de traductions courantes
 TRANSLATIONS = {
@@ -512,44 +508,6 @@ def translate_to_english(text: str) -> str:
     except Exception as e:
         st.error(f"Erreur lors de la traduction : {str(e)}")
         return text
-
-def send_email(name: str, email: str, subject: str, message: str) -> bool:
-    """Envoie un email via SMTP."""
-    try:
-        # Créer le message
-        msg = MIMEMultipart()
-        msg['From'] = EMAIL_ADDRESS
-        msg['To'] = EMAIL_ADDRESS
-        msg['Subject'] = f"Nouveau message de contact - {subject}"
-        
-        # Corps du message
-        body = f"""
-        Nouveau message de contact reçu :
-        
-        Nom: {name}
-        Email: {email}
-        Sujet: {subject}
-        
-        Message:
-        {message}
-        """
-        
-        msg.attach(MIMEText(body, 'plain'))
-        
-        # Connexion au serveur SMTP
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        
-        # Envoi de l'email
-        text = msg.as_string()
-        server.sendmail(EMAIL_ADDRESS, EMAIL_ADDRESS, text)
-        server.quit()
-        
-        return True
-    except Exception as e:
-        st.error(f"Erreur lors de l'envoi de l'email : {str(e)}")
-        return False
 
 # Titre de l'application
 if st.session_state.first_message:
