@@ -1,0 +1,12 @@
+streamlit>=1.36.0
+langchain>=0.1.12
+langchain-community>=0.0.28
+langchain-core>=0.1.31,<0.2.0
+langchain-huggingface>=0.2.0
+python-dotenv==1.0.1
+fpdf==1.7.2
+huggingface-hub>=0.30.2
+sentence-transformers>=2.6.0
+transformers>=4.52.1
+protobuf>=5.26.1
+markupsafe~=2.0 

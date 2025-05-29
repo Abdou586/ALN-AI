@@ -1,0 +1,8 @@
+version: "3"
+services:
+  ollama:
+    build: .
+    ports:
+      - "11434:11434"  # Expose le port 11434
+    environment:
+      - OLLAMA_HOST=0.0.0.0  # Permet des connexions externes
