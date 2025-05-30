@@ -15,7 +15,6 @@ from email.mime.multipart import MIMEMultipart
 import requests
 from PIL import Image
 from io import BytesIO
-import replicate
 import math
 import re
 

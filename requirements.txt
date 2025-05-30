@@ -7,3 +7,6 @@ requests==2.31.0
 Pillow>=10.4.0
 protobuf>=5.26.1,<6.0
 typer>=0.3.0,<0.10.0
+replicate>=0.22.0
+spacy>=3.7.4
+weasel>=0.3.4
