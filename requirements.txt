@@ -1,7 +1,9 @@
-streamlit==1.32.0
+streamlit>=1.36.0
 langchain==0.1.12
 langchain-community>=0.0.28
 python-dotenv==1.0.1
 fpdf2==2.7.8
 requests==2.31.0
-Pillow==10.2.0
+Pillow>=10.4.0
+protobuf>=5.26.1,<6.0
+typer>=0.3.0,<0.10.0
